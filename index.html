@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+
+<head>
+<meta charset="utf-8">
+<title>Skimaps</title>
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
+
+</head>
+
+<body>
+<div id="map" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+
+<script> 
+/*
+var ignURL = "http://vps.vauge.com/geoserver/snow/wms";
+var ignOptions = {
+layers: 'snow:GEOGRAPHICALGRIDSYSTEMS.MAPS',
+format: 'image/png',
+transparent: true,
+continuousWorld: true,
+attribution: "&copy; Crown Copyright and database right 2013."
+};
+
+var ignMaps = L.tileLayer.wms(ignURL, ignOptions); 
+*/
+var osmTopoMap = new L.TileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	minZoom: 5, 
+	maxZoom: 15,  
+	attribution: "&copy; Crown Copyright and database right 2013."
+});
+
+var slope = L.tileLayer.wms("http://vps.vauge.com/geoserver/snow/wms", {
+layers: 'eudem_dem_merged.slope',
+format: 'image/png',
+transparent: true,
+opacity:0.5,
+continuousWorld: true,
+attribution: "&copy; Crown Copyright and database right 2013.",
+crs:L.CRS.EPSG4258,
+tileSize:256
+}); 
+
+/*
+var shadow = L.tileLayer.wms("http://vps.vauge.com/geoserver/snow/wms", {
+layers: 'snow:eudem_dem_5deg_n40e000.slope.shp',
+format: 'image/png',
+transparent: true,
+opacity:0.5,
+continuousWorld: true,
+attribution: "&copy; Crown Copyright and database right 2013."
+}); 
+*/
+var map = L.mapbox.map('map', 'map.skimaps', {
+    center: new L.LatLng(42.767, 1.33),
+    zoom: 10,
+    fullscreenControl: true,
+    layers: [osmTopoMap]
+});
+
+var baseMaps = {
+};
+
+var overlayMaps = {
+    "Pentes > 30°": slope
+};
+
+L.control.layers(baseMaps, overlayMaps, {collapsed : false}).addTo(map);
+
+</script>
+
+</body>
+</html>

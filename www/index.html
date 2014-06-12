@@ -28,7 +28,7 @@ var ignMaps = L.tileLayer.wms(ignURL, ignOptions);
 var osmTopoMap = new L.TileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 	minZoom: 5, 
 	maxZoom: 15,  
-	attribution: "&copy; Crown Copyright and database right 2013."
+	attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a>, <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 });
 
 var slope = L.tileLayer.wms("http://vps.vauge.com/geoserver/snow/wms", {
@@ -37,7 +37,7 @@ format: 'image/png',
 transparent: true,
 opacity:0.5,
 continuousWorld: true,
-attribution: "&copy; Crown Copyright and database right 2013.",
+attribution: '&copy; <a href="https://github.com/EmileVauge/">Emile Vauge</a> 2014.',
 crs:L.CRS.EPSG4258,
 tileSize:256
 }); 

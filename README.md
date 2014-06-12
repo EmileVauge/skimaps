@@ -1,10 +1,7 @@
 Skimaps est un outil d'aide à la décision pour préparer une course en montagne hivernale. Visualisez directement sur une carte les pentes supérieures à 30°, sujettes aux déclenchements d'avalanches.
 
-***
-
 Accéder à la [Demo](http://emilevauge.github.io/skimaps/www).
 
-***
 
 ![](http://i.imgur.com/uf8wrMS.jpg)
 

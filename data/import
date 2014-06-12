@@ -1,0 +1,11 @@
+wget http://published-files.eea.europa.eu/eudem/entr_r_4258_1_arcsec_gsgrda-eudem-dem-europe_2012_rev1/eudem_tiles_5deg/eudem_dem_5deg_n40w005.tif
+wget http://published-files.eea.europa.eu/eudem/entr_r_4258_1_arcsec_gsgrda-eudem-dem-europe_2012_rev1/eudem_tiles_5deg/eudem_dem_5deg_n40e005.tif
+wget http://published-files.eea.europa.eu/eudem/entr_r_4258_1_arcsec_gsgrda-eudem-dem-europe_2012_rev1/eudem_tiles_5deg/eudem_dem_5deg_n45e005.tif
+wget http://published-files.eea.europa.eu/eudem/entr_r_4258_1_arcsec_gsgrda-eudem-dem-europe_2012_rev1/eudem_tiles_5deg/eudem_dem_5deg_n40e000.tif
+
+gdal_merge.py -o eudem_dem_merged.tif eudem_dem_5deg_n40e005.tif eudem_dem_5deg_n40w005.tif eudem_dem_5deg_n45e005.tif eudem_dem_5deg_n40e000.tif
+
+gdaldem slope -s 111120 eudem_dem_merged.tif eudem_dem_merged.slope.tif
+
+gdal_calc.py -A eudem_dem_merged.slope.tif --outfile=eudem_dem_merged.slope.30.tif --calc="A>=30" --NoDataValue=0 --debug --overwrite
+

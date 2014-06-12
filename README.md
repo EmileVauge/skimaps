@@ -3,7 +3,7 @@ Skimaps est un outil d'aide à la décision pour préparer une course en montagn
 Accéder à la [Demo](http://emilevauge.github.io/skimaps/www).
 
 
-![](http://i.imgur.com/uf8wrMS.jpg)
+![](http://i.imgur.com/9nQdJ76.png)
 
 Skimaps repose sur le récent modèle numérique de terrain européen [EU-DEM](http://www.eea.europa.eu/data-and-maps/data/eu-dem) précis à 25m.
 

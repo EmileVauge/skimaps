@@ -38,7 +38,7 @@ var osmTopoMap = new L.TileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.pn
 });
 
 var slope = L.tileLayer.wms("http://vps.vauge.com/geoserver/snow/wms", {
-layers: 'eudem_dem_merged.slope',
+layers: 'eudem_dem_merged.slope.30.shp',
 format: 'image/png',
 transparent: true,
 opacity:0.5,

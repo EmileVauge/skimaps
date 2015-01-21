@@ -39,8 +39,8 @@ var osmTopoMap = new L.TileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.pn
 	attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a>, <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 });
 
-var slope = L.tileLayer.wms("http://vps.vauge.com/geoserver/snow/wms", {
-layers: 'eudem_dem_merged.slope.30.shp',
+var slope = L.tileLayer.wms("http://skimaps-data.vauge.com/geoserver/skimaps/wms", {
+layers: 'skimaps:eudem_dem_merged.slope.30',
 format: 'image/png',
 transparent: true,
 opacity:0.5,
@@ -50,25 +50,6 @@ crs:L.CRS.EPSG4258,
 tileSize:256
 });
 
-var geojsonURL = 'http://10.10.10.101:8080/slopes/{z}/{x}/{y}.geojson';
-var geojsonSlopes = new L.TileLayer.GeoJSON(geojsonURL, {
-	clipTiles: true,
-	unique: function (feature) {
-		return feature.id;
-	}
-}
-);
-
-/*
-var shadow = L.tileLayer.wms("http://vps.vauge.com/geoserver/snow/wms", {
-layers: 'snow:eudem_dem_5deg_n40e000.slope.shp',
-format: 'image/png',
-transparent: true,
-opacity:0.5,
-continuousWorld: true,
-attribution: "&copy; Crown Copyright and database right 2013."
-});
-*/
 var map = L.mapbox.map('map', 'map.skimaps', {
     center: new L.LatLng(42.767, 1.33),
     zoom: 10,
@@ -84,8 +65,7 @@ var baseMaps = {
 };
 
 var overlayMaps = {
-    "Pentes > 30°": slope,
-		" Geojson" : geojsonSlopes
+    "Pentes > 30°": slope
 };
 
 L.control.layers(baseMaps, overlayMaps, {collapsed : false}).addTo(map);
